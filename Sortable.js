@@ -9,7 +9,7 @@ var DortableJS = new function() {
 		if (e.which != 1) return;
 		var elem = e.target.closest('.box');
 		if (!elem) return;
-		if (elem == document.elementFromPoint(event.clientX, event.clientY)) {
+		if (elem == document.elementFromPoint(e.clientX, e.clientY)) {
 			for (var i = 0; i < spisok.length; i++) {
 				var div1 = document.createElement('div');
 				div1.className = "box1";
@@ -46,13 +46,13 @@ var DortableJS = new function() {
 		dragObject.avatar.style.left = e.pageX - dragObject.shiftX + 'px';
 		dragObject.avatar.style.top = e.pageY - dragObject.shiftY + 'px';
 		dragObject.avatar.hidden = true;
-		var elem = document.elementFromPoint(event.clientX, event.clientY);
+		var elem = document.elementFromPoint(e.clientX, e.clientY);
 		dragObject.avatar.hidden = false;
 		if (elem == elem.closest('.box1')) {
-			vstavka(event)
+			vstavka(e)
 		}
 		if (elem == elem.closest('.box2')) {
-			vstavka2(event)
+			vstavka2(e)
 		}
 		return false;
 	}
@@ -105,23 +105,23 @@ var DortableJS = new function() {
 		avatar.style.zIndex = 9999;
 		avatar.style.position = 'absolute';
 		avatar.style.width = columns.offsetWidth + 'px';
-		var elem = document.elementFromPoint(event.clientX, event.clientY);
-		columns.insertBefore(hn, document.elementFromPoint(event.clientX, event.clientY).parentElement)
+		var elem = document.elementFromPoint(e.clientX, e.clientY);
+		columns.insertBefore(hn, document.elementFromPoint(e.clientX, e.clientY).parentElement)
 	}
 
-	function vstavka(event) {
+	function vstavka(e) {
 		dragObject.avatar.hidden = true;
-		var elem = document.elementFromPoint(event.clientX, event.clientY);
-		columns.insertBefore(hn, document.elementFromPoint(event.clientX, event.clientY).parentElement)
+		var elem = document.elementFromPoint(e.clientX, e.clientY);
+		columns.insertBefore(hn, document.elementFromPoint(e.clientX, e.clientY).parentElement)
 		dragObject.avatar.hidden = false;
 		if (elem == null) {
 			return null;
 		}
 	}
 
-	function vstavka2(event) {
+	function vstavka2(e) {
 		dragObject.avatar.hidden = true;
-		var elem = document.elementFromPoint(event.clientX, event.clientY).parentElement;
+		var elem = document.elementFromPoint(e.clientX, e.clientY).parentElement;
 		dragObject.avatar.hidden = false;
 		return elem.parentNode.insertBefore(hn, elem.nextSibling);
 		if (elem == null) {
@@ -129,9 +129,9 @@ var DortableJS = new function() {
 		}
 	}
 
-	function findDroppable(event) {
+	function findDroppable(e) {
 		dragObject.avatar.hidden = true;
-		var elem = document.elementFromPoint(event.clientX, event.clientY);
+		var elem = document.elementFromPoint(e.clientX, e.clientY);
 		dragObject.avatar.hidden = false;
 		if (elem == null) {
 			return null;
